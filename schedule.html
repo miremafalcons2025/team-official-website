@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule — Mirema Falcons</title>
+  <meta name="description" content="Mirema Falcons fixtures and results.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="nav glass" aria-label="Primary">
+    <a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo.png" alt=""><span>Mirema Falcons</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="roster.html">Roster</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="news.html">News</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="merch.html">Merch</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Toggle theme"></button></div>
+  </nav>
+
+  <main class="container">
+    <section class="hero" style="grid-template-columns:1fr">
+      <div class="hero-card glass-strong">
+        <span class="kicker">Schedule</span>
+        <h1 style="font-size:clamp(2rem,4vw,3rem)">Fixtures & results.</h1>
+        <p>Loaded from <code>data/schedule.json</code>. Results recorded as they happen — no invented scores.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div data-schedule></div>
+    </section>
+
+    <section class="section">
+      <div class="glass card">
+        <h3>Format</h3>
+        <p class="muted">Each entry uses: <code>date</code>, <code>time</code>, <code>opponent</code>, <code>home</code>, <code>venue</code>, <code>result</code> ('W'/'L'), <code>score</code>. Only record real results.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-grid">
+    <div><a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo.png" alt=""><span>Mirema Falcons</span></a><small>Basketball club · Mirema</small></div>
+    <div><h4>Pages</h4><a href="about.html">About</a><a href="roster.html">Roster</a><a href="schedule.html">Schedule</a><a href="news.html">News</a><a href="gallery.html">Gallery</a><a href="merch.html">Merch</a></div>
+    <div><h4>Contact</h4><a href="contact.html">Get in touch</a></div>
+  </div><div class="divider"></div><small>© Mirema Falcons. All rights reserved.</small></div></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

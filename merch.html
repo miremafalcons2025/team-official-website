@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merchandise — Mirema Falcons</title>
+  <meta name="description" content="Mirema Falcons club merchandise — grey capes and black/white shirts with the team logo.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .merch-hero {
+      padding: 40px 16px;
+      text-align: center;
+    }
+    .merch-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 8px; }
+    .merch-hero p { color: var(--text-soft); max-width: 600px; margin: 0 auto 24px; }
+
+    .merch-filters {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .merch-filter {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all .2s ease;
+      backdrop-filter: blur(10px);
+    }
+    .merch-filter.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      padding: 0 16px 40px;
+    }
+
+    .merch-card {
+      background: var(--glass);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft), inset 0 1px 0 var(--glass-highlight);
+      display: flex;
+      flex-direction: column;
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .merch-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .merch-swatch {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--bg-2);
+    }
+    .merch-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .swatch-grey { background: #9ca3af; }
+    .swatch-black { background: #0b1020; }
+    .swatch-white { background: #f5f7fb; border: 1px solid var(--border); }
+    .merch-logo-mock {
+      width: 90px;
+      height: auto;
+      opacity: 0.9;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+    }
+    .swatch-white .merch-logo-mock { filter: drop-shadow(0 4px 8px rgba(29,78,216,0.35)); }
+    .mock-tag {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      pointer-events: none;
+    }
+    .swatch-white .mock-tag { background: rgba(29,78,216,0.85); }
+
+    .merch-info { padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 8px; }
+    .merch-info h3 { margin: 0; font-size: 1.15rem; }
+    .merch-info p { margin: 0; font-size: 0.9rem; color: var(--text-soft); line-height: 1.5; }
+    .merch-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--glass-border); }
+    .merch-price { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .btn-add {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    .coming-soon {
+      grid-column: 1/-1;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px;
+    }
+
+    @media (max-width: 480px) {
+      .merch-swatch { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav glass" aria-label="Primary">
+    <a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo.png" alt=""><span>Mirema Falcons</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="roster.html">Roster</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="news.html">News</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="merch.html" class="active">Merch</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Toggle theme"></button></div>
+  </nav>
+
+  <main class="container">
+    <section class="merch-hero glass-strong">
+      <h1>Club Merchandise</h1>
+      <p>Represent the Mirema Falcons. Grey caps and black or white shirts featuring the team logo, with “I Support Mirema Falcons” on the back of each shirt.</p>
+      <p class="muted" style="margin-top:8px">Product mockups supplied by the club — ordering and checkout will be added when the shop opens.</p>
+    </section>
+
+    <div class="merch-filters" role="tablist" aria-label="Merchandise categories">
+      <button class="merch-filter active" data-filter="all">All</button>
+      <button class="merch-filter" data-filter="cap">Grey Cap</button>
+      <button class="merch-filter" data-filter="shirt">Shirts</button>
+    </div>
+
+    <div class="merch-grid">
+      <article class="merch-card" data-category="cap">
+        <div class="merch-swatch">
+          <img class="merch-photo" src="assets/merch/grey-cape.png" alt="Grey Mirema Falcons cap with the team logo on the front">
+          <span class="mock-tag">Cap</span>
+        </div>
+        <div class="merch-info">
+          <h3>Grey Team Cap</h3>
+          <p>Grey cap with the Mirema Falcons team logo on the front.</p>
+        </div>
+        <div class="merch-footer">
+          <div class="merch-price">KSh 2,500</div>
+          <button class="btn-add" disabled>Coming soon</button>
+        </div>
+      </article>
+
+      <article class="merch-card" data-category="shirt">
+        <div class="merch-swatch">
+          <img class="merch-photo" src="assets/merch/black-tshirt.png" alt="Black Mirema Falcons shirt with the team logo on the front and I Support Mirema Falcons on the back">
+          <span class="mock-tag">Shirt</span>
+        </div>
+        <div class="merch-info">
+          <h3>Black Team Shirt</h3>
+          <p>Black shirt with the team logo on the front and “I Support Mirema Falcons” on the back.</p>
+        </div>
+        <div class="merch-footer">
+          <div class="merch-price">KSh 1,800</div>
+          <button class="btn-add" disabled>Coming soon</button>
+        </div>
+      </article>
+
+      <article class="merch-card" data-category="shirt">
+        <div class="merch-swatch">
+          <img class="merch-photo" src="assets/merch/white-tshirt.png" alt="White Mirema Falcons shirt with the team logo on the front and I Support Mirema Falcons on the back">
+          <span class="mock-tag">Shirt</span>
+        </div>
+        <div class="merch-info">
+          <h3>White Team Shirt</h3>
+          <p>White shirt with the team logo on the front and “I Support Mirema Falcons” on the back.</p>
+        </div>
+        <div class="merch-footer">
+          <div class="merch-price">KSh 1,800</div>
+          <button class="btn-add" disabled>Coming soon</button>
+        </div>
+      </article>
+    </div>
+
+    <p class="coming-soon">Full shop with photos, sizes, and ordering coming soon.</p>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-grid">
+    <div><a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo.png" alt=""><span>Mirema Falcons</span></a><small>Basketball club · Mirema</small></div>
+    <div><h4>Pages</h4><a href="about.html">About</a><a href="roster.html">Roster</a><a href="schedule.html">Schedule</a><a href="news.html">News</a><a href="gallery.html">Gallery</a><a href="merch.html">Merch</a><a href="contact.html">Contact</a></div>
+    <div><h4>Contact</h4><a href="contact.html">Get in touch</a><a href="tel:+254737511081">+254 737 511081</a></div>
+  </div><div class="divider"></div><small>© Mirema Falcons. All rights reserved.</small></div></footer>
+  <script src="js/main.js"></script>
+  <script>
+    document.querySelectorAll('.merch-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.merch-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.filter;
+        document.querySelectorAll('.merch-card').forEach(card => {
+          card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

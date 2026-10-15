@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirema Falcons — Basketball Club</title>
+  <meta name="description" content="Official website of the Mirema Falcons basketball club.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="nav glass" aria-label="Primary">
+    <a class="nav-brand" href="index.html">
+      <img class="nav-logo" src="assets/logo.png" alt="Mirema Falcons logo">
+      <span>Mirema Falcons</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="roster.html">Roster</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="news.html">News</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="merch.html">Merch</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card glass-strong">
+        <span class="hero-badge"><span class="dot"></span>Basketball Club</span>
+        <h1>Soar with the <span class="accent">Falcons.</span></h1>
+        <p>Mirema Falcons — a community basketball club based in Mirema, Roysambu, Nairobi, Kenya. Passion, discipline, and team spirit on the court, built around our players, our community, and the game we love.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="roster.html">Meet the team</a>
+          <a class="btn btn-ghost" href="schedule.html">View schedule</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="logo-showcase">
+          <div class="logo-ring"></div>
+          <img src="assets/logo.png" alt="Mirema Falcons circular badge: dark blue ring with arched white text, white basketballs, gold circle with crowned golden eagle">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Club at a glance</h2>
+        <p>We keep the numbers honest — update these in the source as the club grows.</p>
+      </div>
+      <div class="stats">
+        <div class="glass stat">
+          <div class="num" id="stat-players">—</div>
+          <div class="label">Players</div>
+        </div>
+        <div class="glass stat">
+          <div class="num" id="stat-games">—</div>
+          <div class="label">Games this season</div>
+        </div>
+        <div class="glass stat">
+          <div class="num" id="stat-wins">—</div>
+          <div class="label">Wins</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>What we're about</h2>
+        <p>Four pillars of the Falcons way.</p>
+      </div>
+      <div class="grid grid-4">
+        <div class="glass card">
+          <h3>Discipline</h3>
+          <p>Fundamentals first — shooting, defence, spacing, footwork.</p>
+        </div>
+        <div class="glass card">
+          <h3>Teamwork</h3>
+          <p>Trust each other. Move the ball. Win together.</p>
+        </div>
+        <div class="glass card">
+          <h3>Community</h3>
+          <p>Growing the game in and around Mirema.</p>
+        </div>
+        <div class="glass card">
+          <h3>Growth</h3>
+          <p>Every practice leaves us better than the last.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Next up</h2>
+        <p>Latest fixtures and results.</p>
+      </div>
+      <div data-schedule></div>
+      <p style="margin-top:16px"><a class="btn btn-ghost" href="schedule.html">Full schedule →</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="nav-brand" href="index.html" style="margin-bottom:10px">
+            <img class="nav-logo" src="assets/logo.png" alt="">
+            <span>Mirema Falcons</span>
+          </a>
+          <small>Basketball club · Mirema</small>
+        </div>
+        <div>
+          <h4>Pages</h4>
+          <a href="about.html">About</a>
+          <a href="roster.html">Roster</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="news.html">News</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="merch.html">Merch</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="contact.html">Get in touch</a>
+          <a href="tel:+254737511081">+254 737 511081</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <small>© Mirema Falcons. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // live stats derived from data files (no fabricated numbers)
+    (async function () {
+      const [p, g] = await Promise.allSettled([
+        fetch('data/roster.json').then(r => r.json()),
+        fetch('data/schedule.json').then(r => r.json())
+      ]);
+      const players = p.status === 'fulfilled' && Array.isArray(p.value) ? p.value : [];
+      const games = g.status === 'fulfilled' && Array.isArray(g.value) ? g.value : [];
+      const wins = games.filter(x => x.result === 'W').length;
+      document.getElementById('stat-players').textContent = players.length || '—';
+      document.getElementById('stat-games').textContent = games.length || '—';
+      document.getElementById('stat-wins').textContent = wins || (games.length ? wins : '—');
+    })();
+  </script>
+</body>
+</html>
